@@ -2,12 +2,16 @@
 return [
     // HTTP 请求的超时时间（秒）
     'timeout'  => 5.0,
+
+    //验证码配置
     'captcha'  => [
         'length'  => 6,
         'cache'   => 'aoeng:captcha:',
         'timeout' => 60,//多少秒可发一次
         'expires' => 10,//多少分钟过期
     ],
+
+    //路由配置
     'route'    => [
         'prefix' => 'api/',
         'domain' => '',

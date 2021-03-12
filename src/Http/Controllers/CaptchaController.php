@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 /**
- * @group 验证码 CaptchaController
+ * @group 短信验证码 CaptchaController
  * Class CaptchaController
  * @package Aoeng\SMS\Captcha\Http\Controllers
  */

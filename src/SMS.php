@@ -109,7 +109,7 @@ class SMS
             ]);
         } catch (InvalidArgumentException | NoGatewayAvailableException $e) {
 
-            throw $e->getException('aliyun');
+            throw $e->getException($this->getConfig('default.gateways')[0]);
         }
     }
 }
