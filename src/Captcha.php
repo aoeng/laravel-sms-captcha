@@ -31,7 +31,15 @@ class Captcha
         $code = $this->code();
 
         try {
-            $this->sms->mobile($mobile)->template('captcha')->params(['code' => $code])->send();
+            $default = $this->sms->getConfig('default.gateways');
+            if (isset($default[0]) && $default[0] == 'ue35') {
+                $sign = $this->sms->getConfig('sign', false);
+                $message = "【{$sign}】您好，您本次操作的验证码为{$code}，验证码有效期10分钟，请勿泄漏于他人！";
+                $this->sms->mobile($mobile)->send($message);
+            } else {
+                $this->sms->mobile($mobile)->template('captcha')->params(['code' => $code])->send();
+            }
+
         } catch (\Exception $exception) {
             return ['code' => $exception->getCode() ?: 301, 'message' => $exception->getMessage()];
         } finally {
